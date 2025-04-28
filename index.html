@@ -175,7 +175,7 @@ function showError(message) {
   // Clear previous weather and forecast data before showing the error
   document.getElementById('weatherInfo').innerHTML = '';
   document.getElementById('forecast').innerHTML = '';
-  document.getElementById('error').innerHTML = message;
+  document.getElementById('error').innerText = message;
 }
 
 function clearError() {
