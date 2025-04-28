@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Weather App - Built by [Your Name]</title>
+  <title>Weather App - Built by Xiaoran Chen</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -110,6 +110,11 @@ function getCurrentLocationWeather() {
 
 async function fetchWeatherData(url) {
   try {
+    // Clear any previous weather info or errors
+    document.getElementById('weatherInfo').innerHTML = '';
+    document.getElementById('forecast').innerHTML = '';
+    document.getElementById('error').innerHTML = '';
+
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error('Location not found.');
@@ -124,7 +129,7 @@ async function fetchWeatherData(url) {
 }
 
 function displayWeather(data) {
-  document.getElementById('weatherInfo').innerHTML = `
+  document.getElementById('weatherInfo').innerHTML = `  
     <h2>${data.name}, ${data.sys.country}</h2>
     <p><img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="Weather icon"> ${data.weather[0].description}</p>
     <p>🌡️ Temperature: ${data.main.temp}°C</p>
@@ -167,11 +172,14 @@ function displayForecast(data) {
 }
 
 function showError(message) {
-  document.getElementById('error').innerText = message;
+  // Clear previous weather and forecast data before showing the error
+  document.getElementById('weatherInfo').innerHTML = '';
+  document.getElementById('forecast').innerHTML = '';
+  document.getElementById('error').innerHTML = message;
 }
 
 function clearError() {
-  document.getElementById('error').innerText = '';
+  document.getElementById('error').innerHTML = '';
 }
 </script>
 
